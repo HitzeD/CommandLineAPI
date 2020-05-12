@@ -4,6 +4,8 @@ const router = express.Router();
 
 // This route goes '/commands/<route>
 
+// GET stack
+
 router.get('/', (req, res) => {
     db('commands')
     .then(commands => {
@@ -26,6 +28,8 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// POST
+
 router.post('/', (req, res) => {
     const payload = req.body;
 
@@ -41,5 +45,27 @@ router.post('/', (req, res) => {
     });
 });
 
+// PUT
+
+
+
+// DELETE
+
+// WORK IN PROGRESS
+router.delete('/:id', async (req, res) => {
+
+        const { id } = req.params;
+
+    try {
+
+        return await db('commands').where('id', { id }).del();
+
+    } catch {
+
+        return res.status(500).json({ message: 'Failed to delete command' });
+
+    }
+
+});
 
 module.exports = router
