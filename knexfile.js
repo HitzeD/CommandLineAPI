@@ -8,10 +8,14 @@ module.exports = {
       filename: './data/commands.db3'
     },
     useNullAsDefault: true,
+
     migrations: {
       directory: './data/migrations',
-      tableName: 'dbmigrations',
     },
+
+    seeds: {
+      directory: './data/seeds',
+    }
   },
 
   // staging: {
