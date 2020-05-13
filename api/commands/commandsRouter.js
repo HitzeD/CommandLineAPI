@@ -58,7 +58,13 @@ router.delete('/:id', async (req, res) => {
 
     try {
 
-        return await db('commands').where('id', { id }).del();
+        const count = await db('commands').where({ id }).del();
+
+        if (count) {
+            res.json(count);
+        } else {
+            res.status(400).json({ message: "Command not found" });
+        }
 
     } catch {
 
