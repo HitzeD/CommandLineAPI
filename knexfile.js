@@ -1,20 +1,21 @@
 // Update with your config settings.
+require('dotenv').config;
 
 module.exports = {
 
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './data/commands.db3'
+      filename: process.env.CONNROUTE,
     },
     useNullAsDefault: true,
 
     migrations: {
-      directory: './data/migrations',
+      directory: process.env.MIGROUTE,
     },
 
     seeds: {
-      directory: './data/seeds',
+      directory: process.env.SEEDROUTE,
     }
   },
 
