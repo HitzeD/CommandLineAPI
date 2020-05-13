@@ -46,48 +46,32 @@ router.post('/', (req, res) => {
 });
 
 // PUT
-
+// Returns the ID of the object updated
 router.put('/:id', (req, res) => {
     const command = req.body;
     const { id } = req.params;
 
     db('commands').where({ id }).update(command)
     .then(upCommand => {
-        res.status(200).json(upCommand);
+        res.status(200).json({ id });
     })
     .catch(err => {
-        res.status(500).json({ message: 'Fialed to update command', err });
+        res.status(500).json({ message: 'Failed to update command', err });
     });
-
 });
 
 
 // DELETE
 
-// WORK IN PROGRESS
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', (req, res) => {
 
     const { id } = req.params;
 
-    // try {
-
-    //     const count = await db('commands').where({ id }).del();
-
-    //     if (count) {
-    //         res.json(count);
-    //     } else {
-    //         res.status(400).json({ message: "Command not found" });
-    //     }
-
-    // } catch {
-
-    //     return res.status(500).json({ message: 'Failed to delete command' });
-
-    // }
 
     db('commands').where({ id }).del()
     .then(command => {
-        res.status(200).json(command);
+        
+        res.status(200).json({ message: `ID: ${ id } // Command Removed` });
     })
     .catch(err => {
         res.status(500).json({ message: 'Failed to delete command', err});
