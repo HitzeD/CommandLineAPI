@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
         res.json(commands);
     })
     .catch(err => {
-        res.status(500).json({ message: 'Failed to retrieve commands' });
+        res.status(500).json({ message: 'Failed to retrieve commands', err });
     });
 });
 
@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
         res.json(command);
     })
     .catch(err => {
-        res.status(500).json({ message: 'Failed to retrieve command' });
+        res.status(500).json({ message: 'Failed to retrieve command', err });
     });
 });
 
@@ -41,12 +41,25 @@ router.post('/', (req, res) => {
         });
     })
     .catch(err => {
-        res.status(500).json({ message: 'Failed to store data' });
+        res.status(500).json({ message: 'Failed to store data', err });
     });
 });
 
 // PUT
 
+router.put('/:id', (req, res) => {
+    const command = req.body;
+    const { id } = req.params;
+
+    db('commands').where({ id }).update(command)
+    .then(upCommand => {
+        res.status(200).json(upCommand);
+    })
+    .catch(err => {
+        res.status(500).json({ message: 'Fialed to update command', err });
+    });
+
+});
 
 
 // DELETE
@@ -54,24 +67,31 @@ router.post('/', (req, res) => {
 // WORK IN PROGRESS
 router.delete('/:id', async (req, res) => {
 
-        const { id } = req.params;
+    const { id } = req.params;
 
-    try {
+    // try {
 
-        const count = await db('commands').where({ id }).del();
+    //     const count = await db('commands').where({ id }).del();
 
-        if (count) {
-            res.json(count);
-        } else {
-            res.status(400).json({ message: "Command not found" });
-        }
+    //     if (count) {
+    //         res.json(count);
+    //     } else {
+    //         res.status(400).json({ message: "Command not found" });
+    //     }
 
-    } catch {
+    // } catch {
 
-        return res.status(500).json({ message: 'Failed to delete command' });
+    //     return res.status(500).json({ message: 'Failed to delete command' });
 
-    }
+    // }
 
+    db('commands').where({ id }).del()
+    .then(command => {
+        res.status(200).json(command);
+    })
+    .catch(err => {
+        res.status(500).json({ message: 'Failed to delete command', err});
+    });
 });
 
 module.exports = router
