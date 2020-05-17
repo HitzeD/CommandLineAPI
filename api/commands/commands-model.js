@@ -7,8 +7,6 @@ function find() {
         .select('c.id', 'c.name', 'c.command', 'p.platform');
 }
 
-// 'c.id', 'c.name', 'c.command', 'p.platform'
-
 function findById(id) {
     return db('commands')
     .where({id})
