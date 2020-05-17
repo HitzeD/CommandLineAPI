@@ -4,8 +4,8 @@
   "description": "Backend application collecting CLI commands",
   "main": "index.js",
   "engines": {
-    "node": "12.16.x",
-  }
+    "node": "12.16.x"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
