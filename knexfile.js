@@ -6,16 +6,16 @@ module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: process.env.CONNROUTE,
+      filename: './data/commands.db3',
     },
     useNullAsDefault: true,
 
     migrations: {
-      directory: process.env.MIGROUTE,
+      directory: './data/migrations',
     },
 
     seeds: {
-      directory: process.env.SEEDROUTE,
+      directory: './data/seeds',
     }
   },
 
