@@ -15,7 +15,7 @@ function findById(id) {
 
 function createNewCommand(data) {
     return db('commands')
-    .insert(data, 'id');
+    .insert(data);
 }
 
 function updateCommand(id, data) {
@@ -30,6 +30,10 @@ function deleteCommand(id) {
     .del();
 }
 
+function findPlatforms() {
+    return db('platforms');
+}
+
 // function findByPlatform(name) {
 //     return db('commands as c')
 //     .join('platforms as p', 'p.platform', )
@@ -42,4 +46,5 @@ module.exports = {
     createNewCommand,
     updateCommand,
     deleteCommand,
+    findPlatforms,
 }
