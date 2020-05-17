@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('../../data/db-config.js');
+const db = require('./commands-model.js');
 const router = express.Router();
 
 // This route goes '/commands/<route>
@@ -7,7 +7,7 @@ const router = express.Router();
 // GET stack
 
 router.get('/', (req, res) => {
-    db('commands')
+    return db.find()
     .then(commands => {
         res.json(commands);
     })
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     const { id } = req.params;
 
-    db('commands').where({ id }).first()
+    db.findById(id)
     .then(command => {
         res.json(command);
     })
@@ -28,12 +28,18 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// router.get('/:name', (req, res) => {
+//     const { name } = req.params;
+
+
+// })
+
 // POST
 
 router.post('/', (req, res) => {
     const payload = req.body;
 
-    db('commands').insert(payload)
+    db.createNewCommand(payload)
     .then(ids => {
         db('commands').where({ id: ids[0] })
         .then(newCommand => {
@@ -51,7 +57,7 @@ router.put('/:id', (req, res) => {
     const command = req.body;
     const { id } = req.params;
 
-    db('commands').where({ id }).update(command)
+    db.updateCommand(id, command)
     .then(upCommand => {
         res.status(200).json({ id });
     })
@@ -68,7 +74,7 @@ router.delete('/:id', (req, res) => {
     const { id } = req.params;
 
 
-    db('commands').where({ id }).del()
+    db.deleteCommand(id)
     .then(command => {
         
         res.status(200).json({ message: `ID: ${ id } // Command Removed` });
