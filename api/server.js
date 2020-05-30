@@ -9,7 +9,7 @@ server.use(require('body-parser').text());
 const commandsRouter = require('./commands/commandsRouter.js');
 
 
-// server.use(helmet());
+server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
