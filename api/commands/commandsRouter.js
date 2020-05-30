@@ -28,6 +28,16 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.get('/platforms', (req, res) => {
+    return db.findPlatforms()
+    .then(platforms => {
+        res.json(platforms);
+    })
+    .catch(err => {
+        res.status(500).json({message: 'Failed to retrieve platforms', err})
+    });
+});
+
 // router.get('/:name', (req, res) => {
 //     const { name } = req.params;
 
