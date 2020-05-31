@@ -10,7 +10,6 @@ module.exports = {
       user: process.env.POSTGRES_DEV_USER,
       password: process.env.POSTGRES_DEV_PASSWORD,
       database: process.env.POSTGRES_DEV_DATABASE,
-      ssl: {rejectUnauthorized: false}
     },
     pool: {
       min: 2,
