@@ -9,14 +9,14 @@ module.exports = {
       host: process.env.POSTGRES_DEV_HOST,
       user: process.env.POSTGRES_DEV_USER,
       password: process.env.POSTGRES_DEV_PASSWORD,
-      database: process.env.POSTGRES_DEV_DATABASE
+      database: process.env.POSTGRES_DEV_DATABASE,
+      ssl: {rejectUnauthorized: false}
     },
     pool: {
       min: 2,
       max: 10
     },
     useNullAsDefault: true,
-    rejectUnauthorized: false,
 
     migrations: {
       directory: './data/migrations'
