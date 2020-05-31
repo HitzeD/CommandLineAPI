@@ -16,6 +16,7 @@ module.exports = {
       max: 10
     },
     useNullAsDefault: true,
+    rejectUnauthorized: false,
 
     migrations: {
       directory: './data/migrations'
