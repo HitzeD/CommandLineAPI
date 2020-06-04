@@ -1,16 +1,20 @@
 {
   "name": "package.json",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend application collecting CLI commands",
   "main": "index.js",
+  "engines": {
+    "node": "12.16.x"
+  },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "knex": "^0.21.1",
     "nodemon": "^2.0.3",
-    "sqlite3": "^4.2.0"
+    "pg": "^7.12.1"
   },
   "devDependencies": {},
   "scripts": {

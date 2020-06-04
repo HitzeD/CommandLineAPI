@@ -7,9 +7,8 @@ server.use(require('body-parser').text());
 
 const commandsRouter = require('./commands/commandsRouter.js');
 
-const server = express();
 
-server.use(helmet()); // sets some HTTP headers
+server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
