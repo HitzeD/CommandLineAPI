@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('./commands-model.js');
+const db = require('../../data/models/commands-model');
 const router = express.Router();
 
 // This route goes '/commands/<route>

@@ -1,4 +1,4 @@
-const db = require('../../data/db-config.js');
+const db = require('../db-config.js');
 
 
 function find() {
@@ -33,12 +33,6 @@ function deleteCommand(id) {
 function findPlatforms() {
     return db('platforms');
 }
-
-// function findByPlatform(name) {
-//     return db('commands as c')
-//     .join('platforms as p', 'p.platform', )
-// }
-
 
 module.exports = {
     find,
