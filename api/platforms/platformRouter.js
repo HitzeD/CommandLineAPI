@@ -7,7 +7,7 @@ router.post('/addplatform', (req, res) => {
 
     db.add(name)
         .then(platform => {
-            res.status(201).json(name)
+            res.status(201).json(platform)
         })
         .catch(err => {
             res.status(500).json(err);
