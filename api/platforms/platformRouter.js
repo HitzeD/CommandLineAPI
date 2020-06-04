@@ -14,4 +14,14 @@ router.post('/addplatform', (req, res) => {
         });
 });
 
+router.get('/platforms', (req, res) => {
+    db.getAll()
+        .then(platform => {
+            res.status(201).json(platform);
+        })
+        .catch(err => {
+            res.status(401).json(err);
+        });
+});
+
 module.exports = router;
